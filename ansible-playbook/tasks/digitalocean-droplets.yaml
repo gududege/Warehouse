@@ -1,0 +1,11 @@
+- name: Gather information for all droplets
+  community.digitalocean.digital_ocean_droplet_info:
+    oauth_token: "{{ digitalocean_token }}"
+  register: droplets
+  
+- name: Create dictionary for all droplets
+  set_fact:
+    droplets_data: "{{ droplets_data | default([]) + [item] }}"
+  with_items: "{{ droplets.data | community.general.json_query(droplets_info_query) }}"
+  vars:
+    droplets_info_query: "[*].{hostname: name, status: status, region: region.name, ipv4: networks.v4[?type=='public'].ip_address, ipv6: networks.v6[?type=='public'].ip_address}"

@@ -1,0 +1,20 @@
+version: "3"
+services:
+  reader:
+    #image: hectorqin/reader
+    image: hectorqin/reader:openj9-latest #docker镜像，arm64架构或小内存机器优先使用此镜像.启用需删除上一行
+    container_name: reader #容器名 可自行修改
+    restart: always
+    ports:
+      - 8090:8080
+    networks:
+      - default
+    volumes:
+      - ${ENV_WORKDIR}/reader/logs:/logs #log映射目录 /home/reader/logs 映射目录可自行修改
+      - ${ENV_WORKDIR}/reader/storage:/storage #数据映射目录 /home/reader/storage 映射目录可自行修改
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - READER_APP_CACHECHAPTERCONTENT=true #开启缓存章节内容 V2.0
+      - READER_APP_SECURE=true #开启登录鉴权，开启后将支持多用户模式
+      - READER_APP_SECUREKEY=${ENV_ADMIN_PASSWORD}#管理员密码  建议修改
+networks: {}

@@ -15,7 +15,7 @@ docker pull lucifer94/aws-cli-refreship:latest
 ```
 2. Run the image with some necessary variables
 ```
-docker run -d -e AWS_ACCESS_KEY=AKIAWAT3UBQPS46asdOXR -e AWS_ACCESS_SECERT=fN+S+XQbtQKzRl9tBoUENW19asdZOtbiiO2amy -e AWS_REGION=ap-northeast-1 -e AWS_VM_INSTANCE_ID=i-0d13feasda462cas -e AWS_VM_DOMAIN_NAME=www.yourhost.name -e CYCLE_TIME=15 --name aws-cli-refreship lucifer94/aws-cli-refreship:latest
+docker run -d -e AWS_ACCESS_KEY=xxxxxxxxxxxx -e AWS_ACCESS_SECERT=xxxxxxxxxxxxxxxxxxxx -e AWS_REGION=ap-northeast-1 -e AWS_VM_INSTANCE_ID=i-xxxxxxxxxxx -e AWS_VM_DOMAIN_NAME=xxx.xxxxxxx.xxx -e CYCLE_TIME=15 --name aws-cli-refreship lucifer94/aws-cli-refreship:latest
 ```
 
 ## Usage

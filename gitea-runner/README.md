@@ -1,1 +1,0 @@
-It's a image that support runner service for Gitea, for more information please refer [act runner](https://gitea.com/gitea/act_runner) and [Feature Preview: Gitea Actions](https://blog.gitea.io/2022/12/feature-preview-gitea-actions/)

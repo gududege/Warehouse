@@ -1,0 +1,29 @@
+- name: Gather information about all instances
+  amazon.aws.ec2_instance_info:
+   region: "{{ aws_region }}"
+   access_key: "{{aws_accesskey}}"
+   secret_key: "{{ aws_secret_key }}"
+   uptime: "{{ aws_uptime }}"
+  register: ec2s
+
+- name: Create dictionary for all ec2 instances
+  set_fact:
+    ec2s_data: "{{ ec2s_data | default([]) + [item] }}"
+  with_items: "{{ ec2s | community.general.json_query(ec2_info_query) }}"
+  vars:
+    ec2_info_query: "instances[*].{hostname: tags.Name, id: instance_id, region: placement.availability_zone, status: state.name, ipv4: public_ip_address, ipv6: ipv6_address }"
+
+- name: Ping ec2 instance
+  shell: sudo ping -c 4 -W 1 {{ ec2s_data[0].ipv4 }}
+  register: result
+  ignore_errors: true
+  when: ec2s_data[0].status == "running"
+
+- name: Restarted ec2 instance
+  amazon.aws.ec2_instance:
+    state: rebooted
+    region: "{{ aws_region }}"
+    access_key: "{{aws_accesskey}}"
+    secret_key: "{{ aws_secret_key }}"
+    instance_ids: "{{ ec2s_data[0].id }}"
+  when: result is failed
