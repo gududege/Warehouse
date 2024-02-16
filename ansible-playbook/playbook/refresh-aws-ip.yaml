@@ -1,0 +1,24 @@
+- hosts: localhost
+  gather_facts: false
+  connection: local
+
+  vars:
+    token: "do://dop_v1_47605b0fddbb32f87a284b0d5c457eaff44208fef5ae35f305129b611e6a4868?domain_name=do-us.moli.host"  
+    # token: "aws://AKIA6ODU4MFF76THRCT2:ZeVcRjFgHjCZ4TKpGYU+1P4ZeT3JmgjD+pAbeyJu@ap-northeast-1?hostname=aws-jp.moli.host&instance_id=i-awssdasdzxc"  
+
+  tasks:
+    # - name: Split input vari
+    #   set_fact:
+    #     do: '{{ digitalocean_token  | urlsplit }}'
+    #   no_log: True
+
+    - include_tasks: ../tasks/aws-ec2.yaml
+      vars:        
+        aws_token: "{{ token }}"
+        aws_uptime: 10
+      when: token | urlsplit("scheme") == 'aws'
+
+    - include_tasks: ../tasks/digitalocean-droplets.yaml
+      vars:        
+        do_token: "{{ token }}"
+      when: token | urlsplit("scheme") == 'do'

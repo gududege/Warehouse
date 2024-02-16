@@ -1,3 +1,23 @@
+# The given token should follow the format:
+# aws://AccessKeyID:AccessSecretKey@RegionName?hostname=aaaa&instance_id=bbbb
+- name: Parse input token
+  set_fact:
+    aws_accesskey: '{{ aws_token  | urlsplit("username") }}'
+    aws_secret_key: '{{ aws_token  | urlsplit("password") }}'
+    aws_region: '{{ aws_token  | urlsplit("hostname") }}'
+    # aws_hostname: '{{ aws_token  | urlsplit("query")   }}'
+    # aws_instance_id: '{{ aws_token  | urlsplit("query") }}'
+
+- name: Exit process
+  ansible.builtin.fail:
+    msg: |
+      The input token
+        aws_accesskey = {{aws_region}}
+        aws_secret_key = {{aws_secret_key}}
+        aws_region = {{aws_region}}
+      doesn't match the format
+  when: aws_accesskey == "" or aws_secret_key == "" or aws_region == ""
+
 - name: Gather information about all instances
   amazon.aws.ec2_instance_info:
    region: "{{ aws_region }}"

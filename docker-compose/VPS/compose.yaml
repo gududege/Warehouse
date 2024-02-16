@@ -9,9 +9,11 @@ services:
       - DDNS_TOKEN=${ENV_DNS_PROVIDER_TOKEN}
       - DDNS_IPV4=${ENV_HOST}
       - DDNS_IPV6=${ENV_HOST}
-      - DDNS_INDEX4=shell:wget -q -O - ipv4.ip.sb
-      - DDNS_INDEX6=shell:wget -q -O - ipv6.ip.sb
+      - DDNS_INDEX4=shell:wget -q -O - ${ENV_URL_IPV4_API}
+      - DDNS_INDEX6=shell:wget -q -O - ${ENV_URL_IPV6_API}
     network_mode: host
+    cap_add:
+      - CAP_NET_ADMIN
     restart: always
   nginx-proxy-manager:
     image: jc21/nginx-proxy-manager:latest
