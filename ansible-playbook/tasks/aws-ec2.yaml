@@ -1,10 +1,10 @@
 # The given token should follow the format:
 # aws://AccessKeyID:AccessSecretKey@RegionName?hostname=aaaa&instance_id=bbbb
 - name: Parse input token
-  set_fact:
-    aws_accesskey: '{{ aws_token  | urlsplit("username") }}'
-    aws_secret_key: '{{ aws_token  | urlsplit("password") }}'
-    aws_region: '{{ aws_token  | urlsplit("hostname") }}'
+  ansible.builtin.set_fact:
+    aws_accesskey: '{{ aws_token | urlsplit("username") }}'
+    aws_secret_key: '{{ aws_token | urlsplit("password") }}'
+    aws_region: '{{ aws_token | urlsplit("hostname") }}'
     # aws_hostname: '{{ aws_token  | urlsplit("query")   }}'
     # aws_instance_id: '{{ aws_token  | urlsplit("query") }}'
 
@@ -12,38 +12,47 @@
   ansible.builtin.fail:
     msg: |
       The input token
-        aws_accesskey = {{aws_region}}
-        aws_secret_key = {{aws_secret_key}}
-        aws_region = {{aws_region}}
+        aws_accesskey = {{ aws_region }}
+        aws_secret_key = {{ aws_secret_key }}
+        aws_region = {{ aws_region }}
       doesn't match the format
   when: aws_accesskey == "" or aws_secret_key == "" or aws_region == ""
 
 - name: Gather information about all instances
   amazon.aws.ec2_instance_info:
-   region: "{{ aws_region }}"
-   access_key: "{{aws_accesskey}}"
-   secret_key: "{{ aws_secret_key }}"
-   uptime: "{{ aws_uptime }}"
+    region: "{{ aws_region }}"
+    access_key: "{{ aws_accesskey }}"
+    secret_key: "{{ aws_secret_key }}"
+    uptime: "{{ aws_uptime }}"
   register: ec2s
 
 - name: Create dictionary for all ec2 instances
-  set_fact:
+  ansible.builtin.set_fact:
     ec2s_data: "{{ ec2s_data | default([]) + [item] }}"
   with_items: "{{ ec2s | community.general.json_query(ec2_info_query) }}"
   vars:
-    ec2_info_query: "instances[*].{hostname: tags.Name, id: instance_id, region: placement.availability_zone, status: state.name, ipv4: public_ip_address, ipv6: ipv6_address }"
+    ec2_info_query: >
+      instances[*].{
+        hostname: tags.Name,
+        id: instance_id,
+        region: placement.availability_zone,
+        status: state.name,
+        ipv4: public_ip_address,
+        ipv6: ipv6_address
+      }
 
 - name: Ping ec2 instance
-  shell: sudo ping -c 4 -W 1 {{ ec2s_data[0].ipv4 }}
+  ansible.builtin.command: sudo ping -c 4 -W 1 {{ ec2s_data[0].ipv4 }}
   register: result
   ignore_errors: true
+  changed_when: false
   when: ec2s_data[0].status == "running"
 
 - name: Restarted ec2 instance
   amazon.aws.ec2_instance:
     state: rebooted
     region: "{{ aws_region }}"
-    access_key: "{{aws_accesskey}}"
+    access_key: "{{ aws_accesskey }}"
     secret_key: "{{ aws_secret_key }}"
     instance_ids: "{{ ec2s_data[0].id }}"
   when: result is failed

@@ -1,0 +1,26 @@
+- name: Terminal if os is not Debian
+  ansible.builtin.fail:
+    msg: This playbook is only suit with Debian os.
+  when: ansible_distribution != "Debian"
+  become: true
+
+- name: Install ufw
+  ansible.builtin.shell: |
+    apt update && apt install -y ufw
+  args:
+    creates: /usr/sbin/ufw
+  changed_when: false
+  become: true
+
+- name: Connfigure ufw
+  ansible.builtin.shell: |
+    ufw allow "{{ item }}"
+  changed_when: false
+  with_items: "{{ ufw_allowed_port }}"
+  become: true
+
+- name: Enable ufw
+  ansible.builtin.shell: |
+    echo "y" | ufw enable
+  changed_when: false
+  become: true

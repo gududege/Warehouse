@@ -1,0 +1,32 @@
+- name: Initial vps environment on new server
+  hosts: new_server
+  become: true
+
+  vars:
+    ufw_allowed_port:
+      - 1022/tcp # new ssh port
+      - 1080/tcp # 1panel
+      - 5001/tcp # Dockge
+      - 1335:1340/tcp # ss
+      - 80
+      - 443
+      - 22
+    
+
+  tasks:
+    - name: Terminal if os is not Debian
+      ansible.builtin.fail:
+        msg: This playbook is only suit with Debian os.
+      when: ansible_distribution != "Debian"
+
+    - name: Install basic command
+      ansible.builtin.shell: |
+        apt update && apt install -y supervisor fail2ban rsyslog git vim expect curl
+        systemctl start fail2ban && systemctl enable fail2ban
+      changed_when: false
+
+    # - name: Configure ufw
+    #   ansible.builtin.include_tasks: "../tasks/ufw-configure.yaml"
+
+    - name: Configure 1Panel
+      ansible.builtin.include_tasks: "../tasks/1Panel-configure.yaml"
