@@ -11,7 +11,6 @@
       - 80
       - 443
       - 22
-    
 
   tasks:
     - name: Terminal if os is not Debian
@@ -21,7 +20,7 @@
 
     - name: Install basic command
       ansible.builtin.shell: |
-        apt update && apt install -y supervisor fail2ban rsyslog git vim expect curl
+        apt update && apt install -y supervisor fail2ban rsyslog git vim expect curl unzip
         systemctl start fail2ban && systemctl enable fail2ban
       changed_when: false
 
