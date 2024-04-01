@@ -1,0 +1,25 @@
+bashlog:
+  help: A simple but powerful logging library for bash.
+  files:
+    - source: "bashlog/bashlog.sh"
+      target: "%{user_lib_dir}/bashlog.%{user_ext}"
+
+is.sh:
+  help: Fancy alternative for old good test command.
+  files:
+    - source: "is.sh/is.sh"
+      target: "%{user_lib_dir}/is.%{user_ext}"
+
+log4sh:
+  help: log4sh is a logging framework for shell scripts.
+  files:
+    - source: "log4sh/log4sh.sh"
+      target: "%{user_lib_dir}/log4sh.%{user_ext}"
+
+simpleLog4sh:
+  help: simpleLog4sh是一个极为简单的shell日志框架.
+  files:
+    - source: "simpleLog4sh/simpleLog4sh.sh"
+      target: "%{user_lib_dir}/simpleLog4sh.%{user_ext}"
+    - source: "simpleLog4sh/simpleLog4sh.cfg"
+      target: "%{user_lib_dir}/simpleLog4sh.cfg"
