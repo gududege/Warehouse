@@ -11,15 +11,13 @@ is.sh:
       target: "%{user_lib_dir}/is.%{user_ext}"
 
 log4sh:
-  help: log4sh is a logging framework for shell scripts.
+  help: A logging framework for shell scripts.
   files:
     - source: "log4sh/log4sh.sh"
       target: "%{user_lib_dir}/log4sh.%{user_ext}"
 
-simpleLog4sh:
-  help: simpleLog4sh是一个极为简单的shell日志框架.
+resty:
+  help: A simple, concise shell interface for interacting with REST services.
   files:
-    - source: "simpleLog4sh/simpleLog4sh.sh"
-      target: "%{user_lib_dir}/simpleLog4sh.%{user_ext}"
-    - source: "simpleLog4sh/simpleLog4sh.cfg"
-      target: "%{user_lib_dir}/simpleLog4sh.cfg"
+    - source: "resty:/resty.sh"
+      target: "%{user_lib_dir}/resty.%{user_ext}"
