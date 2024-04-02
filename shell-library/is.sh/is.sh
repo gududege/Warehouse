@@ -123,3 +123,11 @@ EOF
 
     return 1
 }
+
+if is not equal "${BASH_SOURCE[0]}" "$0"; then
+    export -f is
+else
+set -x
+    is "${@}"
+    exit $?
+fi

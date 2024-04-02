@@ -43,6 +43,7 @@ $ source ./is.sh
 ### Conditions
 
 * ``is equal $valueA $valueB`` - checks if values are the same or if they are equal numbers
+* ``is == $varA $varB`` - checks if variables are the same or if they are equal completely
 * ``is matching $regexp $value`` - checks if whole value matches to regular expression
 * ``is substring $valueA $valueB`` - checks if first value is a part of second one
 * ``is empty $value`` - checks if value is empty

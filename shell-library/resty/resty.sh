@@ -333,7 +333,7 @@ cat <<HELP
       <curl opt>    Any curl options will be passed down to curl.
 HELP
 }
-
+set -x
 # With -W option, does not write to history file
 [ "$1" = "-W" ] && export _RESTY_NO_HISTORY="/dev/null" && [[ $# -gt 0 ]] && shift
 

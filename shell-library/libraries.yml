@@ -1,13 +1,13 @@
 bashlog:
   help: A simple but powerful logging library for bash.
   files:
-    - source: "bashlog/bashlog.sh"
+    - source: "bashlog/bashlog.min.sh"
       target: "%{user_lib_dir}/bashlog.%{user_ext}"
 
 is.sh:
   help: Fancy alternative for old good test command.
   files:
-    - source: "is.sh/is.sh"
+    - source: "is.sh/is.min.sh"
       target: "%{user_lib_dir}/is.%{user_ext}"
 
 log4sh:
@@ -19,5 +19,5 @@ log4sh:
 resty:
   help: A simple, concise shell interface for interacting with REST services.
   files:
-    - source: "resty:/resty.sh"
+    - source: "resty:/resty.min.sh"
       target: "%{user_lib_dir}/resty.%{user_ext}"
