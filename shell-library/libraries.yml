@@ -21,3 +21,16 @@ resty:
   files:
     - source: "resty:/resty.min.sh"
       target: "%{user_lib_dir}/resty.%{user_ext}"
+
+bash_unit:
+  help: |
+   bash_unit allows you to write unit tests (functions starting with test), run them and, in case of failure, 
+   displays the stack trace with source file and line number indications to locate the problem.
+  files:
+    - source: "bash_unit/bash_unit.min.sh"
+      target: "%{user_target_dir}/test/bash_unit.%{user_ext}"
+    - source: "bash_unit/test.sh"
+      target: "%{user_target_dir}/test/test.%{user_ext}"
+  post_install_message: |
+    Run test as following: bash test/bash_unit.sh test/test.sh
+    See doc to customize test: https://github.com/pgrange/bash_unit/blob/main/README.adoc#how-to-write-tests
