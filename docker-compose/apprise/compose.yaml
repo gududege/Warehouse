@@ -1,0 +1,17 @@
+version: "3"
+services:
+  apprise:
+    container_name: apprise
+    image: caronc/apprise:latest
+    ports:
+      - 8020:8000
+    environment:
+      - APPRISE_STATEFUL_MODE=simple
+      - APPRISE_WORKER_COUNT=1
+    volumes:
+      - ./config:/config
+      - ./plugin:/plugin
+      - ./attach:/attach
+    restart: always
+    env_file:
+      - .env

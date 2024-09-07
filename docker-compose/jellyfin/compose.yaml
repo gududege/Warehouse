@@ -1,0 +1,23 @@
+version: "3"
+services:
+  jellyfin:
+    container_name: jellyfin
+    hostname: jellyfin
+    image: nyanmisaka/jellyfin:latest
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - ${ENV_DIR_CACHE:-./cache}:/cache
+      - ${ENV_DIR_CONFIG:-./config}:/config
+      - ${ENV_DIR_MEDIA:-./media}:/media
+    ports:
+      - 8096:8096
+    restart: always
+    env_file:
+      - .env
+    devices:
+      - /dev/dri:/dev/dri
+    deploy:
+      resources:
+        limits:
+          memory: "2147483648"

@@ -1,0 +1,29 @@
+version: "3"
+services:
+  auto_bangumi:
+    container_name: auto-bangumi
+    hostname: auto-bangumi
+    image: ghcr.io/estrellaxd/auto_bangumi:latest
+    environment:
+      - PGID=$(id -g)
+      - PUID=$(id -u)
+      - UMASK=022
+      - AB_DOWNLOADER_HOST=${ENV_DOWNLOADER_URL}
+      - AB_DOWNLOADER_USERNAME=${ENV_DOWNLOADER_USER}
+      - AB_DOWNLOADER_PASSWORD=${ENV_DOWNLOADER_PASSWORD}
+      - AB_DOWNLOAD_PATH=${ENV_DOWNLOAD_PATH}
+      - AB_RSS=${ENV_AB_RSS}
+    volumes:
+      - ${ENV_DIR_CONFIG:-./conifg}:/app/config
+      - ${ENV_DIR_DATA:-./data}:/app/data
+      - ${ENV_DIR_HOST_DOWNLOAD_PATH}:/downloads
+    dns:
+      - 8.8.8.8
+      - 114.114.114.114
+    ports:
+      - 7892:7892
+    restart: always
+    env_file:
+      - .env
+    extra_hosts:
+      - mikanani.tv:104.21.17.69

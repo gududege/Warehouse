@@ -1,0 +1,14 @@
+version: "3"
+services:
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:latest
+    hostname: uptime-kuma
+    volumes:
+      - ${ENV_DIR_DATA:-./data}:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 6002:3001
+    restart: always
+    env_file:
+      - .env

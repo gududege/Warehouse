@@ -1,0 +1,13 @@
+version: "3"
+services:
+  bark-server:
+    container_name: bark-server
+    image: finab/bark-server:latest
+    hostname: bark
+    volumes:
+      - ${ENV_DIR_DATA:-./data}:/data
+    ports:
+      - 6080:8080
+    restart: always
+    env_file:
+      - .env

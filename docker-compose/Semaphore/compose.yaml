@@ -1,13 +1,12 @@
 version: "3"
 services:
   semaphore:
-    restart: unless-stopped
     ports:
       - 3000:3000
     image: semaphoreui/semaphore:latest
     volumes:
-      - ${ENV_WORKDIR}/semaphore/playbook:/opt/semaphore/
-      - ${ENV_WORKDIR}/semaphore/data/lib:/var/lib/semaphore
+      - ${ENV_DIR_PLAYBOOK:-./playbook}:/opt/semaphore/
+      - ${ENV_DIR_DATA:-./data/lib}:/var/lib/semaphore
     environment:
       SEMAPHORE_DB_DIALECT: bolt
       SEMAPHORE_PLAYBOOK_PATH: /opt/semaphore/
@@ -16,3 +15,6 @@ services:
       SEMAPHORE_ADMIN: ${ENV_ADMIN_USER}
       SEMAPHORE_ACCESS_KEY_ENCRYPTION: ${ENV_ADMIN_TOKEN}
       TZ: Asis/Shanghai
+    restart: always
+    env_file:
+      - .env

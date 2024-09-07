@@ -1,0 +1,21 @@
+version: "3"
+services:
+  jackett:
+    container_name: jackett
+    image: lscr.io/linuxserver/jackett:latest
+    hostname: jackett
+    environment:
+      - AUTO_UPDATE=true #optional
+      - PUID=99
+      - PGID=100
+      - UMASK=022
+      - TZ=Asia/Shanghai
+      - RUN_OPTS= #optional run options here
+    volumes:
+      - ${ENV_DIR_CONFIG:-./config}:/config
+      - ${ENV_DIR_DOWNLOAD:-./downloads}:/downloads
+    ports:
+      - 9117:9117
+    restart: always
+    env_file:
+      - .env

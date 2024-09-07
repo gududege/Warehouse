@@ -1,0 +1,21 @@
+version: "3"
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    image: ghcr.io/hotio/qbittorrent:latest
+    hostname: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Asia/Shanghai
+      - WEBUI_PORTS=8080/tcp,8080/udp
+    volumes:
+      - ${ENV_DIR_CONFIG:-./config}:/config
+      - ${ENV_DIR_DATA:-./data}:/data
+      - ${ENV_DIR_DOWNLOAD:-./downloads}:/downloads
+    ports:
+      - 8085:8080
+    restart: always
+    env_file:
+      - .env

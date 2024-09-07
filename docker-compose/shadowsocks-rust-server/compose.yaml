@@ -1,0 +1,18 @@
+version: "3"
+services:
+  ssserver:
+    image: ghcr.io/shadowsocks/ssserver-rust:latest
+    container_name: ssserver
+    command:
+      - sh
+      - -c
+      - apk add curl >> /dev/null && curl -s -o
+        /etc/shadowsocks-rust/config.json ${ENV_SS_CONFIG_FILE_URL} &&ssserver
+        --log-without-time -a nobody -c /etc/shadowsocks-rust/config.json
+    environment:
+      - ENV_SS_PASSWORD=${ENV_SS_PASSWORD}
+    network_mode: host
+    restart: always
+    env_file:
+      - .env
+networks: {}

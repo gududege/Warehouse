@@ -1,6 +1,6 @@
 #
 # Home: https://github.com/NateScarlet/gfwlist.acl
-# Date: 2023-12-31T10:23:41.622475+08:00
+# Date: 2024-09-03T10:36:05.947702+08:00
 # URL: https://raw.githubusercontent.com/NateScarlet/gfwlist.acl/master/gfwlist.acl
 #
 
@@ -15,6 +15,7 @@
 (^|\.)altrec\.com
 (^|\.)angela-merkel\.de
 (^|\.)angola\.org
+(^|\.)anthropic\.com
 (^|\.)apartmentratings\.com
 (^|\.)apartments\.com
 (^|\.)arena\.taipei
@@ -35,11 +36,14 @@
 (^|\.)casinobellini\.com
 (^|\.)centauro\.com\.br
 (^|\.)chobit\.cc
+(^|\.)ciciai\.com
+(^|\.)claude\.ai
 (^|\.)clearsurance\.com
 (^|\.)images\.comico\.tw
 (^|\.)static\.comico\.tw
 (^|\.)counter\.social
 (^|\.)costco\.com
+(^|\.)coze\.com
 (^|\.)crossfire\.co\.kr
 (^|\.)crunchyroll\.com
 (^|\.)d2pass\.com
@@ -238,6 +242,7 @@ share\.dmhy\.org
 (^|\.)xiaomi\.eu
 (^|\.)youwin\.com
 (^|\.)ytn\.co\.kr
+(^|\.)zamimg\.com
 (^|\.)zattoo\.com
 (^|\.)zim\.vn
 (^|\.)zozotown\.com
@@ -425,6 +430,7 @@ share\.dmhy\.org
 (^|\.)bithumb\.com
 (^|\.)bitinka\.com\.ar
 (^|\.)bitmex\.com
+(^|\.)bnbstatic\.com
 (^|\.)btc98\.com
 (^|\.)btcbank\.bank
 (^|\.)btctrade\.im
@@ -448,10 +454,12 @@ share\.dmhy\.org
 (^|\.)dragonex\.io
 (^|\.)ebtcbank\.com
 (^|\.)etherdelta\.com
+(^|\.)ethermine\.org
 (^|\.)etherscan\.io
 (^|\.)exmo\.com
 (^|\.)exrates\.me
 (^|\.)exx\.com
+(^|\.)f2pool\.com
 (^|\.)fatbtc\.com
 (^|\.)ftx\.com
 (^|\.)gate\.io
@@ -1053,6 +1061,7 @@ cn\.nytstyle\.com
 (^|\.)twitter\.com
 (^|\.)twitter\.jp
 (^|\.)vine\.co
+(^|\.)x\.com
 (^|\.)gov\.taipei
 \.gov\.tw
 ^aiss\.anws\.gov\.tw
@@ -1088,6 +1097,7 @@ cn\.nytstyle\.com
 (^|\.)wda\.gov\.tw
 (^|\.)teco-hk\.org
 (^|\.)teco-mo\.org
+(^|\.)npm\.gov\.tw
 (^|\.)kinmen\.org\.tw
 ^www\.americorps\.gov
 (^|\.)jpl\.nasa\.gov
@@ -1179,7 +1189,7 @@ video\.yahoo\.com
 \.138\.com
 (^|\.)141jj\.com
 \.141tube\.com
-\.1688\.com\.au
+(^|\.)1688\.com\.au
 \.173ng\.com
 (^|\.)173ng\.com
 \.177pic\.info
@@ -1471,8 +1481,8 @@ video\.ap\.org
 (^|\.)apkcombo\.com
 (^|\.)apkmonk\.com
 (^|\.)apkplz\.com
-apkpure\.com
 (^|\.)apkpure\.com
+(^|\.)apkpure\.net
 \.aplusvpn\.com
 (^|\.)appbrain\.com
 \.appledaily\.com
@@ -1494,6 +1504,7 @@ appledaily\.com\.tw
 (^|\.)archive\.is
 \.archive\.li
 (^|\.)archive\.li
+(^|\.)archive\.md
 (^|\.)archive\.org
 (^|\.)archive\.ph
 archive\.today
@@ -1565,6 +1576,7 @@ avaaz\.org
 (^|\.)axureformac\.com
 \.azerbaycan\.tv
 azerimix\.com
+(^|\.)azirevpn\.com
 boxun.+\.azurewebsites\.net
 (^|\.)boxun.+\.azurewebsites\.net
 (^|\.)b-ok\.cc
@@ -1840,6 +1852,7 @@ busytrade\.com
 \.buzzhand\.net
 \.buzzorange\.com
 (^|\.)buzzorange\.com
+(^|\.)buzzsprout\.com
 (^|\.)bvpn\.com
 (^|\.)bwh1\.net
 bwsj\.hk
@@ -1850,6 +1863,7 @@ bwsj\.hk
 (^|\.)c-spanvideo\.org
 (^|\.)c-est-simple\.com
 \.c100tibet\.org
+(^|\.)cableav\.tv
 (^|\.)cablegatesearch\.net
 \.cachinese\.com
 \.cacnw\.com
@@ -1981,6 +1995,7 @@ cdpwu\.org
 ^changsa\.net
 (^|\.)channelnewsasia\.com
 \.chapm25\.com
+(^|\.)chatgpt\.com
 \.chaturbate\.com
 (^|\.)chaturbate\.com
 \.chuang-yen\.org
@@ -2138,7 +2153,8 @@ cloakpoint\.com
 (^|\.)cloudflare-ipfs\.com
 (^|\.)club1069\.com
 (^|\.)clubhouseapi\.com
-cmi\.org\.tw
+(^|\.)cmegroup\.com
+(^|\.)cmi\.org\.tw
 ^www\.cmoinc\.org
 cmp\.hku\.hk
 hkupop\.hku\.hk
@@ -2363,6 +2379,7 @@ dcmilitary\.com
 (^|\.)deviantart\.net
 (^|\.)devio\.us
 (^|\.)devpn\.com
+(^|\.)devv\.ai
 (^|\.)dfas\.mil
 dfn\.org
 dharmakara\.net
@@ -2520,6 +2537,7 @@ eastern-ark\.com
 \.easyca\.ca
 \.easypic\.com
 (^|\.)fnc\.ebc\.net\.tw
+(^|\.)news\.ebc\.net\.tw
 \.ebony-beauty\.com
 ebookbrowse\.com
 ebookee\.com
@@ -2635,8 +2653,8 @@ etvonline\.hk
 (^|\.)eurekavpt\.com
 \.euronews\.com
 (^|\.)euronews\.com
-\.evschool\.net
-^evschool\.net
+(^|\.)apps\.evozi\.com
+(^|\.)evschool\.net
 (^|\.)exblog\.jp
 (^|\.)blog\.exblog\.co\.jp
 \.exchristian\.hk
@@ -3444,6 +3462,7 @@ hqmovies\.com
 \.hrea\.org
 \.hrichina\.org
 (^|\.)hrichina\.org
+(^|\.)hrntt\.org
 \.hrtsea\.com
 \.hrw\.org
 (^|\.)hrw\.org
@@ -3481,6 +3500,7 @@ huaxin\.ph
 (^|\.)huhangfei\.com
 huiyi\.in
 \.hulkshare\.com
+(^|\.)humanparty\.me
 (^|\.)humanrightspressawards\.org
 (^|\.)hung-ya\.com
 (^|\.)hungerstrikeforaids\.org
@@ -3519,6 +3539,7 @@ ibros\.org
 \.ibvpn\.com
 (^|\.)ibvpn\.com
 icams\.com
+(^|\.)icedrive\.net
 \.icij\.org
 (^|\.)icij\.org
 (^|\.)icl-fi\.org
@@ -3572,7 +3593,8 @@ ifjc\.org
 \.imagefap\.com
 (^|\.)imagefap\.com
 (^|\.)imageflea\.com
-imageshack\.us
+(^|\.)imageglass\.org
+(^|\.)imageshack\.us
 (^|\.)imagevenue\.com
 (^|\.)imagezilla\.net
 \.imb\.org
@@ -3626,7 +3648,7 @@ internetfreedom\.org
 inxian\.com
 (^|\.)inxian\.com
 ipalter\.com
-\.ipfire\.org
+(^|\.)ipfire\.org
 (^|\.)iphone4hongkong\.com
 (^|\.)iphonehacks\.com
 (^|\.)iphonetaiwan\.org
@@ -3691,8 +3713,10 @@ ithelp\.ithome\.com\.tw
 \.ivacy\.com
 (^|\.)ivacy\.com
 \.iverycd\.com
+(^|\.)ivonblog\.com
 \.ivpn\.net
 (^|\.)ivpn\.net
+(^|\.)iwara\.tv
 (^|\.)ixquick\.com
 \.ixxx\.com
 \.iyouport\.com
@@ -3704,11 +3728,11 @@ ithelp\.ithome\.com\.tw
 \.izlesem\.org
 (^|\.)j\.mp
 (^|\.)jable\.tv
-blog\.jackjia\.com
+(^|\.)blog\.jackjia\.com
 jamaat\.org
 (^|\.)jamestown\.org
-\.jamyangnorbu\.com
-^jamyangnorbu\.com
+(^|\.)jamyangnorbu\.com
+(^|\.)jan\.ai
 \.jandyx\.com
 (^|\.)janwongphoto\.com
 (^|\.)japan-whores\.com
@@ -3805,6 +3829,7 @@ juyuange\.org
 juziyue\.com
 (^|\.)juziyue\.com
 (^|\.)jwmusic\.org
+(^|\.)cdn\.jwplayer\.com
 \.jyxf\.net
 (^|\.)k-doujin\.net
 (^|\.)ka-wai\.com
@@ -3979,10 +4004,11 @@ letscorp\.net
 (^|\.)liaowangxizang\.net
 \.liaowangxizang\.net
 (^|\.)liberal\.org\.hk
-\.libertytimes\.com\.tw
+(^|\.)libertysculpturepark\.com
+(^|\.)libertytimes\.com\.tw
 (^|\.)libredd\.it
-\.lighten\.org\.tw
-\.lightnovel\.cn
+(^|\.)lighten\.org\.tw
+(^|\.)lightnovel\.cn
 limiao\.net
 linkuswell\.com
 (^|\.)line\.me
@@ -4011,14 +4037,13 @@ listorious\.com
 \.liujianshu\.com
 (^|\.)liujianshu\.com
 \.liuxiaobo\.net
-^liuxiaobo\.net
+(^|\.)liuxiaobo\.net
 liuxiaotong\.com
 (^|\.)liuxiaotong\.com
 \.livedoor\.jp
 \.liveleak\.com
 (^|\.)liveleak\.com
 (^|\.)livemint\.com
-\.livestation\.com
 livestream\.com
 (^|\.)livestream\.com
 (^|\.)livingonline\.us
@@ -4028,7 +4053,7 @@ livestream\.com
 \.liwangyang\.com
 lizhizhuangbi\.com
 lkcn\.net
-\.llss\.me$
+(^|\.)chat\.lmsys\.org
 (^|\.)lncn\.org
 \.load\.to
 \.lobsangwangyal\.com
@@ -4747,10 +4772,9 @@ peacehall\.com
 penchinese\.com
 (^|\.)penchinese\.net
 \.penchinese\.net
-pengyulong\.com
-penisbot\.com
 (^|\.)blog\.pentalogic\.net
 \.penthouse\.com
+(^|\.)pentoy\.hk
 \.peoplebookcafe\.com
 \.peoplenews\.tw
 (^|\.)peoplenews\.tw
@@ -4759,13 +4783,13 @@ penisbot\.com
 \.percy\.in
 \.perfectgirls\.net
 (^|\.)perfect-privacy\.com
+(^|\.)perplexity\.ai
 \.persecutionblog\.com
 \.persiankitty\.com
 phapluan\.org
 \.phayul\.com
 (^|\.)phayul\.com
 philborges\.com
-philly\.com
 (^|\.)phncdn\.com
 (^|\.)photodharma\.net
 (^|\.)photofocus\.com
@@ -4799,6 +4823,7 @@ picturesocial\.com
 \.piposay\.com
 piraattilahti\.org
 \.piring\.com
+(^|\.)pixeldrain\.com
 (^|\.)pixelqi\.com
 (^|\.)css\.pixnet\.in
 (^|\.)pixnet\.net
@@ -4832,14 +4857,13 @@ pobieramy\.top
 (^|\.)poe\.com
 \.pokerstars\.com
 (^|\.)pokerstars\.com
-\.pokerstars\.net
-zh\.pokerstrategy\.com
-politicalchina\.org
-politicalconsultation\.org
+(^|\.)pokerstars\.net
+(^|\.)zh\.pokerstrategy\.com
+(^|\.)politicalchina\.org
+(^|\.)politicalconsultation\.org
 \.politiscales\.net
 (^|\.)poloniex\.com
-\.polymerhk\.com
-^polymerhk\.com
+(^|\.)polymerhk\.com
 \.popo\.tw
 (^|\.)popvote\.hk
 (^|\.)popxi\.click
@@ -4880,6 +4904,7 @@ politicalconsultation\.org
 postadult\.com
 \.postimg\.org
 (^|\.)potvpn\.com
+(^|\.)pourquoi\.tw
 (^|\.)powercx\.com
 \.powerphoto\.org
 (^|\.)www\.powerpointninja\.com
@@ -4918,7 +4943,6 @@ heix\.pp\.ru
 (^|\.)premeforwindows7\.com
 (^|\.)presentationzen\.com
 (^|\.)prestige-av\.com
-prisoner-state-secret-journal-premier
 \.prisoneralert\.com
 (^|\.)pritunl\.com
 (^|\.)privacybox\.de
@@ -4935,7 +4959,6 @@ privatetunnel\.com
 provideocoalition\.com
 (^|\.)prosiben\.de
 proxifier\.com
-api\.proxlet\.com
 (^|\.)proxomitron\.info
 \.proxpn\.com
 (^|\.)proxpn\.com
@@ -4976,11 +4999,12 @@ pwned\.com
 (^|\.)pximg\.net
 python\.com
 \.python\.com\.tw
-^python\.com\.tw
-ss\.pythonic\.life$
+(^|\.)python\.com\.tw
+ss\.pythonic\.life
 \.qanote\.com
 (^|\.)qanote\.com
-\.qgirl\.com\.tw
+(^|\.)qbittorrent\.org
+(^|\.)qgirl\.com\.tw
 (^|\.)qianbai\.tw
 (^|\.)qiandao\.today
 (^|\.)qiangwaikan\.com
@@ -5001,7 +5025,7 @@ qoos\.com
 (^|\.)qtweeter\.com
 (^|\.)qtrac\.eu
 \.quannengshen\.org
-^quannengshen\.org
+(^|\.)quannengshen\.org
 quantumbooter\.net
 (^|\.)quitccp\.net
 \.quitccp\.net
@@ -5014,13 +5038,11 @@ qusi8\.net
 \.qvodzy\.org
 qxbbs\.org
 (^|\.)r0\.ru
-\.ra\.gg
-^ra\.gg$
-\.radicalparty\.org
+(^|\.)radio-canada\.ca
 (^|\.)rael\.org
 radicalparty\.org
 (^|\.)radio\.garden
-radioaustralia\.net\.au
+(^|\.)radioaustralia\.net\.au
 \.radiohilight\.net
 (^|\.)radiohilight\.net
 (^|\.)radioline\.co
@@ -5034,14 +5056,12 @@ opml\.radiotime\.com
 \.raizoji\.or\.jp
 ^raizoji\.or\.jp
 rangwang\.biz
-rangzen\.com
 rangzen\.net
 rangzen\.org
 ^blog\.ranxiang\.com$
 ranyunfei\.com
 (^|\.)ranyunfei\.com
 \.rapbull\.net
-^rapidgator\.net$
 (^|\.)rapidmoviez\.com
 rapidvpn\.com
 (^|\.)rapidvpn\.com
@@ -5133,6 +5153,7 @@ rfaweb\.org
 \.roodo\.com
 \.rosechina\.net
 \.rotten\.com
+(^|\.)rou\.video
 \.rsf\.org
 (^|\.)rsf\.org
 \.rsf-chinese\.org
@@ -5551,6 +5572,7 @@ sthoo\.com
 \.stoptibetcrisis\.net
 (^|\.)stoptibetcrisis\.net
 (^|\.)storify\.com
+(^|\.)storj\.io
 \.stormmediagroup\.com
 (^|\.)stoweboyd\.com
 (^|\.)straitstimes\.com
@@ -5639,6 +5661,7 @@ tahr\.org\.tw
 \.taipeisociety\.org
 (^|\.)taipeisociety\.org
 (^|\.)taipeitimes\.com
+(^|\.)taisounds\.com
 \.taiwanbible\.com
 \.taiwancon\.com
 \.taiwandaily\.net
@@ -5720,6 +5743,7 @@ teensinasia\.com
 \.telecomspace\.com
 (^|\.)telegraph\.co\.uk
 \.tenacy\.com
+(^|\.)tenor\.com
 (^|\.)tenzinpalmo\.com
 \.tew\.org
 (^|\.)tew\.org
@@ -5808,12 +5832,12 @@ tibet\.ca
 tibet\.fr
 \.tibet\.net
 (^|\.)tibet\.net
-tibet\.nu
+(^|\.)tibet\.nu
 \.tibet\.org
 (^|\.)tibet\.org
 \.tibet\.sk
-tibet\.org\.tw
-\.tibet\.to
+(^|\.)tibet\.org\.tw
+(^|\.)tibet\.to
 \.tibet-envoy\.eu
 (^|\.)tibet-envoy\.eu
 \.tibet-foundation\.org
@@ -5874,33 +5898,28 @@ tibetcharity\.in
 \.tibetkomite\.dk
 (^|\.)tibetmuseum\.org
 (^|\.)tibetnetwork\.org
-\.tibetoffice\.ch
-^tibetoffice\.ch
+(^|\.)tibetoffice\.ch
 tibetoffice\.eu
 (^|\.)tibetoffice\.org
-tibetonline\.com
 (^|\.)tibetonline\.com
-\.tibetoffice\.com\.au
-^tibetoffice\.com\.au
+(^|\.)tibetoffice\.com\.au
 (^|\.)tibetonline\.tv
-\.tibetonline\.tv
-\.tibetoralhistory\.org
-^tibetoralhistory\.org
-\.tibetpolicy\.eu
-\.tibetrelieffund\.co\.uk
-tibetsites\.com
-\.tibetsociety\.com
+(^|\.)tibetoralhistory\.org
+(^|\.)tibetpolicy\.eu
+(^|\.)tibetrelieffund\.co\.uk
+(^|\.)tibetsites\.com
 (^|\.)tibetsociety\.com
-\.tibetsun\.com
-\.tibetsupportgroup\.org
-^tibetsupportgroup\.org
-\.tibetswiss\.ch
-\.tibettelegraph\.com
-tibettimes\.net
+(^|\.)tibetsun\.com
+(^|\.)tibetsupportgroup\.org
+(^|\.)tibetswiss\.ch
+(^|\.)tibettelegraph\.com
+(^|\.)tibettimes\.net
+(^|\.)tibettruth\.com
 (^|\.)tibetwrites\.org
 \.ticket\.com\.tw
 \.tigervpn\.com
 (^|\.)tigervpn\.com
+(^|\.)tiktokv\.com
 \.timdir\.com
 ^timdir\.com
 \.time\.com
@@ -6278,8 +6297,8 @@ us\.to
 (^|\.)usacn\.com
 \.usaip\.eu
 (^|\.)usaip\.eu
-dalailama\.usc\.edu
 (^|\.)uscnpm\.org
+(^|\.)uscardforum\.com
 (^|\.)usma\.edu
 \.usocctn\.com
 (^|\.)ustibetcommittee\.org
@@ -6517,7 +6536,7 @@ webworkerdaily\.com
 \.wefong\.com
 weiboleak\.com
 \.weihuo\.org
-weijingsheng\.org
+(^|\.)weijingsheng\.org
 \.weiming\.info
 (^|\.)weiming\.info
 weiquanwang\.org
@@ -6656,6 +6675,7 @@ woxinghuiguo\.com
 (^|\.)wqyd\.org
 wrchina\.org
 wretch\.cc
+(^|\.)writesonic\.com
 \.wsj\.com
 (^|\.)wsj\.com
 \.wsj\.net
@@ -6665,7 +6685,7 @@ wretch\.cc
 \.wtfpeople\.com
 wuerkaixi\.com
 (^|\.)wufafangwen\.com
-wufi\.org\.tw
+(^|\.)wufi\.org\.tw
 (^|\.)wuguoguang\.com
 wujie\.net
 wujieliulan\.com
@@ -6807,8 +6827,8 @@ yilubbs\.com
 \.yingsuoss\.com
 \.yipub\.com
 (^|\.)yipub\.com
-(^|\.)yiyechat\.com
 \.yizhihongxing\.com
+(^|\.)yizhihongxing\.com
 \.yobt\.com
 \.yobt\.tv
 (^|\.)yobt\.tv
@@ -6844,9 +6864,9 @@ topic\.youthwant\.com\.tw
 \.youporngay\.com
 (^|\.)youporngay\.com
 \.yourlisten\.com
-^yourlisten\.com
+(^|\.)yourlisten\.com
 \.yourlust\.com
-^yourlust\.com
+(^|\.)yourlust\.com
 youshun12\.com
 \.youtubecn\.com
 youversion\.com
@@ -6855,14 +6875,15 @@ ytht\.net
 yuanming\.net
 \.yuanzhengtang\.org
 \.yulghun\.com
+(^|\.)yulghun\.com
 (^|\.)yunchao\.net
-(^|\.)yuntipub\.com
 \.yuvutu\.com
 (^|\.)yvesgeleyn\.com
 yx51\.net
 \.yyii\.org
 (^|\.)yyii\.org
 (^|\.)yyjlymb\.xyz
+(^|\.)yysub\.net
 \.yzzk\.com
 (^|\.)yzzk\.com
 (^|\.)z-lib\.org
@@ -7011,7 +7032,6 @@ ultrasurf
 (^|\.)nmp\.gov\.tw
 (^|\.)nmvttc\.gov\.tw
 (^|\.)northguan-nsa\.gov\.tw
-(^|\.)npm\.gov\.tw
 (^|\.)nstm\.gov\.tw
 (^|\.)ntdmh\.gov\.tw
 (^|\.)ntl\.gov\.tw
@@ -7043,7 +7063,6 @@ ultrasurf
 (^|\.)myvlog\.im\.tv
 (^|\.)music\.jwmusic\.org
 (^|\.)www\.kodingen\.com
-^www\.lightnovel\.cn
 (^|\.)openwrt\.org\.cn
 (^|\.)simplecd\.me
 (^|\.)static\.soup\.io

@@ -1,0 +1,14 @@
+version: "3"
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    network_mode: host
+    volumes:
+      - ${ENV_DIR_DATA:-./data}:/data
+      - ${ENV_DIR_SSL:-./letsencrypt}:/etc/letsencrypt
+    restart: always
+    extra_hosts:
+      - ${ENV_HOST:-host.docker.internal}:host-gateway
+    env_file:
+      - .env

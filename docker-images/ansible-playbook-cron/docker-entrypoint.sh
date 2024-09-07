@@ -1,6 +1,5 @@
 #!/bin/bash
 # Update timeozne info
-set
 log() {
     if ! $ENV_QUITE_MODE; then
         echo -e "$1"
@@ -10,12 +9,25 @@ logerr() {
     echo -e "$1"
     exit $2
 }
-ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime &&
-    echo ${TZ} >/etc/timezone
+changeMirror(){
+    if [[ $(curl -s ipinfo.io/country) == "CN" ]]; then
+        log "######### Replace Debian APT mirror #########"
+        sed -i "s/deb.debian.org/${ENV_APT_MIRROR}/g" /etc/apt/sources.list.d/debian.sources
+        apt update
+        log "######### Replace PIP mirror #########"
+        pip install -i https://$ENV_PIP_MIRROR pip -U
+        pip config set global.index-url https://$ENV_PIP_MIRROR
+    fi
+}
+# Update time zone
+ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime && echo ${TZ} >/etc/timezone
+
 if [ $# -eq 0 ]; then
     # Exit if no any args
     logerr "No input arguments" 1
 else
+    # Change source mirror according to IP location
+    changeMirror
     # Install need packages
     if [ -n "${ENV_APT_PACKAGES}" ]; then
         for pack in ${ENV_APT_PACKAGES}; do

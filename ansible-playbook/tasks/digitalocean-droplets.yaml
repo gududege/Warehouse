@@ -1,8 +1,16 @@
 - name: Parse input token
   ansible.builtin.set_fact:
+    do_query_keys: '{{ do_token | urlsplit("query") | regex_findall("(?<=&|\?)(.+?)(?==)") }}'
+    do_query_values: '{{ do_token | urlsplit("query") | regex_findall("(?<==)(.+?)(?=&|#|$)", multiline=True) }}'
+- name: Parse input token
+  ansible.builtin.set_fact:
     do_oauth_token: '{{ do_token | urlsplit("hostname") }}'
-    # do_hostname: '{{ do_token | urlsplit("query") }}'
-
+    do_parameters: '{{ dict( do_query_keys | ansible.builtin.zip(do_query_values)) }}'
+  vars:
+    do_query_keys: '{{ do_token | urlsplit("query") | regex_findall("(?<=\?|&)(.+?)(?==)") }}'
+    do_query_values: '{{ do_token | urlsplit("query") | regex_findall("(?<==)(.+?)(?=&|#|$)", multiline=True) }}'
+- debug:
+    var: do_query_values
 - name: Exit process
   ansible.builtin.fail:
     msg: |
@@ -10,27 +18,3 @@
         do_oauth_token = {{ do_oauth_token }}
       doesn't match the format
   when: do_oauth_token == ""
-
-- name: Gather information for all droplets
-  community.digitalocean.digital_ocean_droplet_info:
-    oauth_token: "{{ do_oauth_token }}"
-  register: droplets
-
-- name: Create dictionary for all droplets
-  ansible.builtin.set_fact:
-    droplets_data: "{{ droplets_data | default([]) + [item] }}"
-  with_items: "{{ droplets.data | community.general.json_query(droplets_info_query) }}"
-  vars:
-    droplets_info_query: >
-      [*].{
-        hostname: name,
-        status: status,
-        region: region.name,
-        ipv4: networks.v4[?type=='public'].ip_address,
-        ipv6: networks.v6[?type=='public'].ip_address
-      }
-
-- name: "Gather information about all Floating IPs"
-  community.digitalocean.digital_ocean_floating_ip_info:
-    oauth_token: "{{ do_oauth_token }}"
-  register: result

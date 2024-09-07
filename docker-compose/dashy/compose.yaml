@@ -1,0 +1,21 @@
+version: "3"
+services:
+  dashy:
+    container_name: dashy
+    image: lissy93/dashy:latest
+    hostname: dashy
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ${ENV_DIR_DATA:-./data}:/app/user-data
+    ports:
+      - 5000:8080
+    restart: always
+    env_file:
+      - .env
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

@@ -1,0 +1,24 @@
+version: "3"
+services:
+  virtual-dsm:
+    container_name: dsm
+    image: ghcr.io/vdsm/virtual-dsm:latest
+    hostname: dsm
+    environment:
+      - DISK_SIZE=64G
+      - CPU_CORES=2
+      - RAM_SIZE=1024M
+      - GPU="Y"  
+    volumes:
+      - ${ENV_DIR_DATA:-./data}:/storage
+    network_mode: bridge
+    ports:
+      - 5022:22
+      - 5005:5000
+    restart: always
+    env_file:
+      - .env
+    devices:
+      - /dev/vhost-net:/dev/vhost-net
+      - /dev/kvm:/dev/kvm
+      - /dev/dri:/dev/dri

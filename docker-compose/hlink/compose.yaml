@@ -1,0 +1,16 @@
+version: "3"
+services:
+  hlink:
+    container_name: hlink
+    image: likun7981/hlink:latest
+    hostname: hlink
+    environment:
+      - HLINK_HOME=/config
+    volumes:
+      - ${ENV_HOST_DIR}:/data
+      - ${ENV_DIR_CONFIG:-./config}:/config
+    ports:
+      - 9090:9090
+    restart: always
+    env_file:
+      - .env

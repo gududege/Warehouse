@@ -1,0 +1,87 @@
+services:
+  ## docker hub
+  dockerhub:
+    container_name: reg-docker-hub
+    image: dqzboy/registry:latest
+    restart: always
+    environment:
+      - OTEL_TRACES_EXPORTER=none
+      #- http=http://host:port
+      #- https=http://host:port
+    volumes:
+      - ../../registry/data:/var/lib/registry
+      - ./registry-hub.yml:/etc/distribution/config.yml
+      #- ./htpasswd:/auth/htpasswd
+    ports:
+      - 51000:5000
+    networks:
+      - registry-net
+  ## ghcr.io
+  ghcr:
+    container_name: reg-ghcr
+    image: dqzboy/registry:latest
+    restart: always
+    environment:
+      - OTEL_TRACES_EXPORTER=none
+      #- http=http://host:port
+      #- https=http://host:port
+    volumes:
+      - ../../registry/data:/var/lib/registry
+      - ./registry-ghcr.yml:/etc/distribution/config.yml
+      #- ./htpasswd:/auth/htpasswd
+    ports:
+      - 52000:5000
+    networks:
+      - registry-net
+  ## gcr.io
+  quay:
+    container_name: reg-quay
+    image: dqzboy/registry:latest
+    restart: always
+    environment:
+      - OTEL_TRACES_EXPORTER=none
+      #- http=http://host:port
+      #- https=http://host:port
+    volumes:
+      - ../../registry/data:/var/lib/registry
+      - ./registry-quay.yml:/etc/distribution/config.yml
+      #- ./htpasswd:/auth/htpasswd
+    ports:
+      - 56000:5000
+    networks:
+      - registry-net
+  ## k8s.gcr.io
+  mcr:
+    container_name: reg-mcr
+    image: dqzboy/registry:latest
+    restart: always
+    environment:
+      - OTEL_TRACES_EXPORTER=none
+      #- http=http://host:port
+      #- https=http://host:port
+    volumes:
+      - ../../registry/data:/var/lib/registry
+      - ./registry-mcr.yml:/etc/distribution/config.yml
+      #- ./htpasswd:/auth/htpasswd
+    ports:
+      - 57000:5000
+    networks:
+      - registry-net
+  registry-ui:
+    container_name: registry-ui
+    image: dqzboy/docker-registry-ui:latest
+    environment:
+      - DOCKER_REGISTRY_URL=http://reg-docker-hub:5000
+      - SECRET_KEY_BASE=9f18244a1e1179fa5aa4a06a335d01b2
+      - ENABLE_DELETE_IMAGES=true
+      - NO_SSL_VERIFICATION=true
+    restart: always
+      #- http=http://host:port
+      #- https=http://host:port
+    ports:
+      - 50000:8080
+      #- ./htpasswd:/auth/htpasswd
+    networks:
+      - registry-net
+networks:
+  registry-net: null
