@@ -1,0 +1,75 @@
+{
+    // Extended multiple server configuration
+    // LOCAL: Choosing the best server to connect dynamically
+    // SERVER: Creating multiple servers in one process
+    "servers": [
+      {
+        // Fields are the same as the single server's configuration
+  
+        // Individual servers can be disabled
+        // "disabled": true,
+        "address": "0.0.0.0",
+        "port": 1338,
+        "method": "aes-256-gcm",
+        "password": "${ENV_SS_PASSWORD}",
+        "timeout": 600
+      },
+      {
+        // Fields are the same as the single server's configuration
+  
+        // Individual servers can be disabled
+        // "disabled": true,
+        "address": "::",
+        "port": 1338,
+        "method": "aes-256-gcm",
+        "password": "${ENV_SS_PASSWORD}",
+        "timeout": 600
+      }
+    ],
+  
+    // Options for Manager
+    // "manager_address": "0.0.0.0", // Could be a path to UNIX socket, /tmp/shadowsocks-manager.sock
+    // "manager_port": 5300, // Not needed for UNIX socket
+  
+    // DNS server's address for resolving domain names
+    // For *NIX and Windows, it uses system's configuration by default
+    //
+    // Value could be IP address of DNS server, for example, "8.8.8.8".
+    // DNS client will automatically request port 53 with both TCP and UDP protocol.
+    //
+    // - system, uses system provided API (`getaddrinfo` on *NIX)
+    //
+    // It also allows some pre-defined well-known public DNS servers:
+    // - google (TCP, UDP)
+    // - cloudflare (TCP, UDP)
+    // - cloudflare_tls (TLS), enable by feature "dns-over-tls"
+    // - cloudflare_https (HTTPS), enable by feature "dns-over-https"
+    // - quad9 (TCP, UDP)
+    // - quad9_tls (TLS), enable by feature "dns-over-tls"
+    //
+    // The field is only effective if feature "trust-dns" is enabled.
+    "dns": "cloudflare",
+  
+    // Mode, could be one of the
+    // - tcp_only
+    // - tcp_and_udp
+    // - udp_only
+    "mode": "tcp_and_udp",
+  
+    // Enables `SO_KEEPALIVE` and set `TCP_KEEPIDLE`, `TCP_KEEPINTVL` to the specified seconds
+    "keep_alive": 15,
+  
+    // Try to resolve domain name to IPv6 (AAAA) addresses first
+    "ipv6_first": false,
+    // Set IPV6_V6ONLY for all IPv6 listener sockets
+    // Only valid for locals and servers listening on `::`
+    "ipv6_only": false,
+  
+    // Runtime configuration
+    "runtime": {
+      // single_thread or multi_thread
+      "mode": "multi_thread",
+      // Worker threads that are used in multi-thread runtime
+      "worker_count": 10
+    }
+  }

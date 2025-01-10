@@ -6,14 +6,14 @@ services:
     devices:
       - /dev/dri:/dev/dri
     networks:
-      - immich-net
+      - default
+      - all-connection
     extends:
       file: hwaccel.transcoding.yml
       service: quicksync # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
-      - /mnt/user/Homes/jay/Photos:/photos/jay
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
@@ -31,7 +31,7 @@ services:
     # Example tag: ${IMMICH_VERSION:-release}-cuda
     image: ghcr.io/immich-app/immich-machine-learning:${IMMICH_VERSION:-release}-openvino
     networks:
-      - immich-net
+      - default
     extends:
       # uncomment this section for hardware acceleration - see https://immich.app/docs/features/ml-hardware-acceleration
       file: hwaccel.ml.yml
@@ -45,17 +45,19 @@ services:
       disable: false
   redis:
     container_name: immich_redis
-    image: hub.moli.host/library/redis:6.2-alpine
+    image: redis:6.2-alpine
     networks:
-      - immich-net
+      - default
+      - all-connection
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
   database:
     container_name: immich_postgres
-    image: hub.moli.host/tensorchord/pgvecto-rs:pg14-v0.2.0
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0
     networks:
-      - immich-net
+      - default
+      - all-connection
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
@@ -89,4 +91,5 @@ services:
       - wal_compression=on
     restart: always
 networks:
-  immich-net: null
+  all-connection:
+    external: true

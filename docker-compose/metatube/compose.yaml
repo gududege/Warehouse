@@ -1,0 +1,19 @@
+version: "3"
+services:
+  metatube-server:
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config:/config
+    container_name: metatube
+    image: metatube/metatube-server:latest
+    environment:
+      - DSN=/config/metatube.db
+      - TOKEN='password'
+      - DB_AUTO_MIGRATE=true
+    command: -dsn /config/metatube.db
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

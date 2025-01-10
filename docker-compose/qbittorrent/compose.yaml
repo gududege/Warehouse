@@ -11,11 +11,15 @@ services:
       - TZ=Asia/Shanghai
       - WEBUI_PORTS=8080/tcp,8080/udp
     volumes:
-      - ${ENV_DIR_CONFIG:-./config}:/config
-      - ${ENV_DIR_DATA:-./data}:/data
-      - ${ENV_DIR_DOWNLOAD:-./downloads}:/downloads
+      - ./config:/config
+      - ./data:/data
+      - ./downloads:/downloads
     ports:
       - 8085:8080
     restart: always
     env_file:
-      - .env
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

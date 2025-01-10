@@ -7,18 +7,16 @@ services:
     restart: always
     ports:
       - 8090:8080
-    networks:
-      - default
     volumes:
-      - ${ENV_DIR_LOG:-./logs}:/logs #log映射目录 /home/reader/logs 映射目录可自行修改
-      - ${ENV_DIR_STORAGE:-./storage}:/storage #数据映射目录 /home/reader/storage 映射目录可自行修改
+      - ./logs:/logs #log映射目录 /home/reader/logs 映射目录可自行修改
+      - ./storage:/storage #数据映射目录 /home/reader/storage 映射目录可自行修改
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - READER_APP_CACHECHAPTERCONTENT=true #开启缓存章节内容 V2.0
       - READER_APP_SECURE=true #开启登录鉴权，开启后将支持多用户模式
-      - READER_APP_SECUREKEY=${ENV_ADMIN_PASSWORD:-123456} #管理员密码
-    env_file:
-      - .env
+      - READER_APP_SECUREKEY=password #管理员密码
+    networks:
+      - all-connection
 networks:
-  br0:
+  all-connection:
     external: true

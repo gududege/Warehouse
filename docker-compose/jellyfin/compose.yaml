@@ -7,8 +7,8 @@ services:
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - ${ENV_DIR_CACHE:-./cache}:/cache
-      - ${ENV_DIR_CONFIG:-./config}:/config
+      - ./cache:/cache
+      - ./config:/config
       - ${ENV_DIR_MEDIA:-./media}:/media
     ports:
       - 8096:8096
@@ -21,3 +21,8 @@ services:
       resources:
         limits:
           memory: "2147483648"
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

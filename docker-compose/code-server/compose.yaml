@@ -1,0 +1,24 @@
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - PASSWORD=password
+      - SUDO_PASSWORD=password
+      - PROXY_DOMAIN=xxx.xxx.xxx #Host name
+      - DEFAULT_WORKSPACE=/workspace #optional
+    volumes:
+      - ./data:/workspace
+      - ./config:/home/coder/.config
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8443:8443
+    restart: always
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

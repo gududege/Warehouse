@@ -2,20 +2,20 @@ version: "3"
 services:
   portainer-ce:
     container_name: portainer
-    image: hub.moli.host/portainer/portainer-ce
+    image: portainer/portainer-ce
     hostname: portainer
     environment:
       - TZ=Asia/Shanghai
-      - HOST_OS=Unraid
-      - HOST_HOSTNAME=portainer.nas.moli.host
-      - HOST_CONTAINERNAME=Portainer-CE
     volumes:
-      - ${ENV_DIR_DATA:-./data}:/data:rw
+      - ./data:/data:rw
       - /var/run/docker.sock:/var/run/docker.sock:rw
     ports:
       - 8000:8000
       - 9000:9000
       - 9996:9996
     restart: always
-    env_file:
-      - .env
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

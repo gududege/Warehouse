@@ -1,0 +1,58 @@
+version: "3"
+services:
+  newfuture_ddns:
+    image: newfuture/ddns:latest
+    container_name: ddns
+    environment:
+      - DDNS_DNS=${ENV_DNS_PROVIDER}
+      - DDNS_ID=${ENV_DNS_PROVIDER_ID}
+      - DDNS_TOKEN=${ENV_DNS_PROVIDER_TOKEN}
+      - DDNS_IPV6=${ENV_HOST}
+      - DDNS_INDEX6=shell:wget -q -O - ${ENV_URL_IPV6_API}
+    network_mode: host
+    cap_add:
+      - CAP_NET_ADMIN
+    restart: always
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    network_mode: host
+    environment:
+      - X_FRAME_OPTIONS=sameorigin
+    ports:
+      - 80:80 # Public HTTP Port
+      - 443:443 # Public HTTPS Port
+      - 81:81 # Admin Web Port
+    volumes:
+      - ./npm/data:/data
+      - ./npm/letsencrypt:/etc/letsencrypt
+    restart: always
+    networks:
+      - all-connection
+  ssserver:
+    image: ghcr.io/shadowsocks/ssserver-rust:latest
+    container_name: ssserver
+    volumes:
+      - ./ssserver/config:/app/data
+    command:
+      - sh
+      - -c
+      - ssserver --log-without-time -a nobody -c /etc/shadowsocks-rust/config.json
+    environment:
+      - ENV_SS_PASSWORD=${ENV_SS_PASSWORD} # ss password
+    network_mode: host
+    restart: always
+  zerotier:
+    container_name: zerotier
+    restart: always
+    network_mode: host
+    volumes:
+      - ./zerotier-one:/var/lib/zerotier-one
+    cap_add:
+      - CAP_NET_ADMIN
+      - CAP_SYS_ADMIN
+    devices:
+      - /dev/net/tun
+    image: zerotier/zerotier:latest
+    command: ${ENV_ZEROTIER_NETWORKID}
+networks: {}

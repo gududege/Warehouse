@@ -1,0 +1,15 @@
+version: "3"
+services:
+  filecodebox:
+    container_name: filecodebox
+    image: lanol/filecodebox:latest
+    restart: always
+    ports:
+      - 12345:12345
+    volumes:
+      - ./data/:/app/data
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

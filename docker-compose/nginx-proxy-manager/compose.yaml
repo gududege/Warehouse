@@ -4,11 +4,18 @@ services:
     image: jc21/nginx-proxy-manager:latest
     container_name: nginx-proxy-manager
     network_mode: host
+    environment:
+      - X_FRAME_OPTIONS=sameorigin
+    ports:
+      - 80:80 # Public HTTP Port
+      - 443:443 # Public HTTPS Port
+      - 81:81 # Admin Web Port
     volumes:
-      - ${ENV_DIR_DATA:-./data}:/data
-      - ${ENV_DIR_SSL:-./letsencrypt}:/etc/letsencrypt
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
     restart: always
-    extra_hosts:
-      - ${ENV_HOST:-host.docker.internal}:host-gateway
-    env_file:
-      - .env
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

@@ -1,0 +1,39 @@
+services:
+  hbbs:
+    container_name: rust-hbbs
+    image: rustdesk/rustdesk-server:latest
+    environment:
+      - ALWAYS_USE_RELAY=Y
+    command: hbbs
+    volumes:
+      - ./data:/root
+    network_mode: host
+    depends_on:
+      - hbbr
+    restart: unless-stopped
+  hbbr:
+    container_name: rust-hbbr
+    image: rustdesk/rustdesk-server:latest
+    command: hbbr
+    volumes:
+      - ./data:/root
+    network_mode: host
+    restart: unless-stopped
+  rustdesk-api-server:
+    container_name: rustdesk-api
+    image: ghcr.io/kingmo888/rustdesk-api-server:latest
+    #environment:
+    #- CSRF_TRUSTED_ORIGINS=http://yourdomain.com:21114 #防跨域信任来源，可选
+    #- ID_SERVER=yourdomain.com #Web控制端使用的ID服务器
+    volumes:
+      - ./db:/rustdesk-api-server/db
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 21114:21114
+    restart: unless-stopped
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

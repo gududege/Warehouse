@@ -7,7 +7,7 @@ services:
     environment:
       - NODE_ENV=production
     volumes:
-      - ${ENV_DIR_DATA:-./data}:/app/user-data
+      - ./data:/app/user-data
     ports:
       - 5000:8080
     restart: always
@@ -19,3 +19,8 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

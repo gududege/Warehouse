@@ -1,0 +1,25 @@
+{
+  "servers": [
+      {
+          "server": "xxx.xxx.xxx",
+          "server_port": 1234,
+          "password": "password",
+          "method": "aes-256-gcm",
+          "timeout": 3600,
+          "tcp_weight": 1.0,
+          "udp_weight": 1.0
+      },
+      {
+          "server": "xxx.xxx.xxx",
+          "server_port": 1234,
+          "password": "password",
+          "method": "aes-256-gcm",
+          "timeout": 3600,
+          "tcp_weight": 0.8,
+          "udp_weight": 0.8
+      }
+  ],
+  "local_port": 11080,
+  "local_address": "0.0.0.0",
+  "acl": "/etc/shadowsocks-rust/gfwlist.acl"
+}

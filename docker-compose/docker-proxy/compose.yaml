@@ -16,6 +16,7 @@ services:
       - 51000:5000
     networks:
       - registry-net
+      - all-connection
   ## ghcr.io
   ghcr:
     container_name: reg-ghcr
@@ -33,6 +34,7 @@ services:
       - 52000:5000
     networks:
       - registry-net
+      - all-connection
   ## gcr.io
   quay:
     container_name: reg-quay
@@ -50,6 +52,7 @@ services:
       - 56000:5000
     networks:
       - registry-net
+      - all-connection
   ## k8s.gcr.io
   mcr:
     container_name: reg-mcr
@@ -67,6 +70,7 @@ services:
       - 57000:5000
     networks:
       - registry-net
+      - all-connection
   registry-ui:
     container_name: registry-ui
     image: dqzboy/docker-registry-ui:latest
@@ -83,5 +87,19 @@ services:
       #- ./htpasswd:/auth/htpasswd
     networks:
       - registry-net
+      - all-connection
+  hubcmd-ui:
+    container_name: hubcmd-ui
+    image: dqzboy/hubcmd-ui:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 30080:3000
+    networks:
+      - registry-net
+      - all-connection
 networks:
   registry-net: null
+  all-connection:
+    external: true

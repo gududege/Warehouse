@@ -1,11 +1,10 @@
-version: '3.3'
+version: '3'
 services:
   alist:
     image: xhofe/alist:latest
     container_name: alist
     volumes:
-      - ${ENV_DIR_DATA:-./data}:/opt/alist/data
-      - /mnt/user:/mnt/data
+      - ./data:/opt/alist/data
     ports:
         - 5244:5244
     environment:
@@ -13,5 +12,8 @@ services:
         - PGID=0
         - UMASK=022
     restart: always
-    env_file:
-      - .env
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

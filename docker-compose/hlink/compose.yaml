@@ -8,9 +8,14 @@ services:
       - HLINK_HOME=/config
     volumes:
       - ${ENV_HOST_DIR}:/data
-      - ${ENV_DIR_CONFIG:-./config}:/config
+      - ./config:/config
     ports:
       - 9090:9090
     restart: always
     env_file:
       - .env
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

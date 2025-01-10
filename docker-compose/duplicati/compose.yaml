@@ -1,10 +1,8 @@
-# ignored options for 'duplicati'
-# --detach
-version: "3.3"
+version: "3"
 services:
   duplicati:
     container_name: duplicati
-    image: linuxserver/duplicati:latest
+    image: lscr.io/linuxserver/duplicati:latest
     hostname: duplicati
     environment:
       - PUID=0
@@ -14,10 +12,15 @@ services:
       - LANGUAGE=ch_ZN.UTF-8
     volumes:
       - ${ENV_DIR_BACKUPS}:/backups
-      - ${ENV_DIR_CONFIG:-./config}:/config
+      - ./config:/config
     privileged: true
     ports:
       - 8200:8200
     restart: always
     env_file:
       - .env
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true

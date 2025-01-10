@@ -14,8 +14,8 @@ services:
       - AB_DOWNLOAD_PATH=${ENV_DOWNLOAD_PATH}
       - AB_RSS=${ENV_AB_RSS}
     volumes:
-      - ${ENV_DIR_CONFIG:-./conifg}:/app/config
-      - ${ENV_DIR_DATA:-./data}:/app/data
+      - ./conifg:/app/config
+      - ./data:/app/data
       - ${ENV_DIR_HOST_DOWNLOAD_PATH}:/downloads
     dns:
       - 8.8.8.8
@@ -25,5 +25,8 @@ services:
     restart: always
     env_file:
       - .env
-    extra_hosts:
-      - mikanani.tv:104.21.17.69
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true
