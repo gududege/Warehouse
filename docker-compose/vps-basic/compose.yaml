@@ -18,6 +18,8 @@ services:
     container_name: nginx-proxy-manager
     environment:
       - X_FRAME_OPTIONS=sameorigin
+      - INITIAL_ADMIN_EMAIL=${ENV_NPM_USER:-admin@example.com}
+      - INITIAL_ADMIN_PASSWORD=${ENV_NPM_PASSWORD:-changeme}
     ports:
       - 80:80 # Public HTTP Port
       - 443:443 # Public HTTPS Port
@@ -41,19 +43,6 @@ services:
       - ENV_SS_PASSWORD=${ENV_SS_PASSWORD} # ss password
     network_mode: host
     restart: always
-  zerotier:
-    container_name: zerotier
-    restart: always
-    network_mode: host
-    volumes:
-      - ./zerotier-one:/var/lib/zerotier-one
-    cap_add:
-      - CAP_NET_ADMIN
-      - CAP_SYS_ADMIN
-    devices:
-      - /dev/net/tun
-    image: zerotier/zerotier:latest
-    command: ${ENV_ZEROTIER_NETWORKID}
 networks: 
   all-connections:
     external: true
