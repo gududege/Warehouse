@@ -4,7 +4,7 @@ services:
     image: ghcr.io/shadowsocks/ssserver-rust:latest
     container_name: ssserver
     volumes:
-      - ./config:/app/data
+      - ./config:/etc/shadowsocks-rust
     command:
       - sh
       - -c

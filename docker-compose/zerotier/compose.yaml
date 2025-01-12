@@ -14,5 +14,5 @@ services:
       - /dev/net/tun
     env_file:
       - .env
-    command: ENV_ZEROTIER_NETWORKID
+    command: xxxxxxx # ZEROTIER NETWORKID
 networks: {}

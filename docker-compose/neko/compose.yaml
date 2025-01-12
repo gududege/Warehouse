@@ -1,29 +1,37 @@
+version: "3"
 services:
-  upsnap:
-    container_name: upsnap
-    image: ghcr.io/seriousm4x/upsnap:4 # images are also available on docker hub: seriousm4x/upsnap:4
-    network_mode: host
+  neko:
+    image: ghcr.io/m1k1o/neko/intel-microsoft-edge:latest
     restart: unless-stopped
-    volumes:
-      - ./data:/app/pb_data
-    # # To use a non-root user, create the mountpoint first (mkdir data) so that it has the right permission.
-    # user: 1000:1000
-    # environment:
-    #   - TZ=Europe/Berlin # Set container timezone for cron schedules
-    #   - UPSNAP_INTERVAL=@every 10s # Sets the interval in which the devices are pinged
-    #   - UPSNAP_SCAN_RANGE=192.168.1.0/24 # Scan range is used for device discovery on local network
-    #   - UPSNAP_SCAN_TIMEOUT=500ms # Scan timeout is nmap's --host-timeout value to wait for devices (https://nmap.org/book/man-performance.html)
-    #   - UPSNAP_PING_PRIVILEGED=true # Set to false if you don't have root user permissions
-    #   - UPSNAP_WEBSITE_TITLE=Custom name # Custom website title
-    # # dns is used for name resolution during network scan
-    # dns:
-    #   - 192.18.0.1
-    #   - 192.18.0.2
-    # # you can change the listen ip:port inside the container like this:
-    entrypoint: /bin/sh -c "./upsnap serve --http 0.0.0.0:5200"
-    healthcheck:
-      test: curl -fs "http://localhost:5200/api/health" || exit 1
-      interval: 10s
-    # # or install custom packages for shutdown
-    # entrypoint: /bin/sh -c "apk update && apk add --no-cache <YOUR_PACKAGE> && rm -rf /var/cache/apk/* && ./upsnap serve --http 0.0.0.0:8090"
+    shm_size: 2gb
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/dri:/dev/dri
+    ports:
+      - 8089:8080
+      - 52000-52100:52000-52100/udp
+    environment:
+      NEKO_SCREEN: 1280x720@30
+      NEKO_PASSWORD: neko
+      NEKO_PASSWORD_ADMIN: admin
+      NEKO_EPR: 52000-52100
+      NEKO_NAT1TO1: xxx.xxx.xxx.xxx
+      NEKO_FILE_TRANSFER_ENABLED: true # changeme
+      NEKO_ICELITE: 1
+  coturn:
+    image: coturn/coturn:latest
+    network_mode: host
+    command: |
+      -n
+      --realm=localhost
+      --fingerprint
+      --listening-ip=0.0.0.0
+      --external-ip=xxx.xxx.xxx.xxx
+      --listening-port=3478
+      --min-port=49160
+      --max-port=49200
+      --log-file=stdout
+      --user=neko:neko
+      --lt-cred-mech
 networks: {}

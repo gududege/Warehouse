@@ -1,37 +1,19 @@
 version: "3"
 services:
-  neko:
-    image: ghcr.io/m1k1o/neko/intel-microsoft-edge:latest
-    restart: unless-stopped
-    shm_size: 2gb
-    cap_add:
-      - SYS_ADMIN
-    devices:
-      - /dev/dri:/dev/dri
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:latest
+    hostname: uptime-kuma
+    volumes:
+      - ./data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 8089:8080
-      - 52000-52100:52000-52100/udp
-    environment:
-      NEKO_SCREEN: 1280x720@30
-      NEKO_PASSWORD: neko
-      NEKO_PASSWORD_ADMIN: admin
-      NEKO_EPR: 52000-52100
-      NEKO_NAT1TO1: xxx.xxx.xxx.xxx
-      NEKO_FILE_TRANSFER_ENABLED: true # changeme
-      NEKO_ICELITE: 1
-  coturn:
-    image: coturn/coturn:latest
-    network_mode: host
-    command: |
-      -n
-      --realm=localhost
-      --fingerprint
-      --listening-ip=0.0.0.0
-      --external-ip=xxx.xxx.xxx.xxx
-      --listening-port=3478
-      --min-port=49160
-      --max-port=49200
-      --log-file=stdout
-      --user=neko:neko
-      --lt-cred-mech
-networks: {}
+      - 6002:3001
+    restart: always
+    env_file:
+      - .env
+    networks:
+      - all-connection
+networks:
+  all-connection:
+    external: true
